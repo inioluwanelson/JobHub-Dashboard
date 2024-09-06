@@ -2,45 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JobHub Landing Page</title>
+    <title>Document</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
-      body {
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        background-color: #fffbe6;
-        color: #009e49;
-      }
-      .nav{
-        padding-top: 20px;
-      }
-      
-      .nav-item {
-        padding-left: 50px;
-        padding-right: 20px;
-      }
-      .navbar-brand {
-       
-        
-        color: #fffbe6;
-      }
-      .nav-item :hover {
-        color: #ff9100; /* Hover effect with bold orange */
+      .navbar {
+        background-color: #00712d; /* Rich green for navbar */
+        color: #fffbe6; /* Pale yellow for text */
       }
       .navbar-toggler {
-        margin-right: 0px;
+        margin-right: 10px;
         border: none;
         outline: none;
-        background-color: #ff9100;
-        
       }
 
       .navbar-toggler:focus,
@@ -49,440 +33,736 @@
         border: none;
         outline: none;
       }
-     
-
-      @media(max-width: 900px){
-        .nav-item {
-        padding-left: 0px;
-        padding-right: 0px;
-      }
-      }
-       .btn{
-         background-color:#ff9100;
-         border: #ff9100;
-       }
-       .btn:hover{
-         background-color:#00712d;
-         border: #00712d;
-         color: #f8f9fa;
-       }
-      .hero {
-        position: relative;
-        background: linear-gradient(45deg, #00712d, #009e49, #ff9100, #d5ed9f);
-        background-size: 200% 200%;
-        animation: waterMovement 5s ease infinite;
+      .nav-link {
         color: #fffbe6;
-        text-align: center;
-        padding: 60px 20px;
-        margin-top: 20px;
       }
-      .hero h1 {
-        font-size: 2.5rem;
-        font-weight: bolder;
+      .navbar-brand {
+        margin-left: 50px;
+        margin-right: 300px;
+        color: #fffbe6;
       }
-      @keyframes fadeText {
-        0%,
-        20%,
-        100% {
-          opacity: 1;
-        }
-        10%,
-        30%,
-        40%,
-        60%,
-        70%,
-        90% {
-          opacity: 0;
-        }
-      }
-      .features-icon {
-        font-size: 3rem;
+      .navbar-brand:hover{
         color: #ff9100;
       }
-      .features-section {
-        background-color: #f8f9fa;
-        padding: 60px 0;
+      .dropdown-menu {
+        background-color: #fffbe6; /* Light yellow background */
       }
-      .features-section .card {
-        border: none;
-        transition: transform 0.3s;
+
+      .nav-item {
+        padding-left: 50px;
+        padding-right: 20px;
       }
-      .features-section .card:hover {
-        transform: scale(1.05);
+      .navbar .nav-item a {
+        color: #fffbe6; /* Navbar links in pale yellow */
       }
-      .how-it-works {
-        background: #d5ed9f;
-        padding: 60px 0;
+      .navbar .nav-item .dropdown-menu a {
+        color: #ff9100; /* Navbar links in pale yellow */
       }
-      .popular-profiles {
-        background-color: #fffbe6;
-        padding: 60px 0;
+      /* Hover and focus state */
+      .dropdown-menu .dropdown-item:hover,
+      .dropdown-menu .dropdown-item:focus {
+        background-color: #d5ed9f; /* Orange background on hover/focus */
       }
-      .testimonial-section {
-        background: #f8f9fa;
-        padding: 60px 0;
+      .navbar .nav-item a:hover {
+        color: #ff9100; /* Hover effect with bold orange */
       }
-      .sponsor-section {
-        background: #f8f9fa;
-        padding: 40px 0;
-        text-align: center;
+      
+      @media (max-width: 900px) {
+        .navbar-brand {
+          margin-left: 20px;
+          margin-right: auto;
+        }
+        .nav-item {
+          padding-left: 20px;
+        }
       }
-      .sponsors img {
-        width: 100px; /* Adjust width as needed */
-        height: auto; /* Maintain aspect ratio */
-        margin: 10px; /* Space between logos */
-        border-radius: 5px; /* Optional: Add rounded corners */
-        filter: brightness(0) invert(1); /* Optional: Enhance visibility */
-        transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effect */
-      }
-      .advert-section {
-        background: linear-gradient(45deg, #00712d, #009e49, #ff9100, #d5ed9f);
-        background-size: 200% 200%;
-        animation: waterMovement 5s ease infinite;
-        color: #fffbe6;
-        padding: 50px 0;
-        text-align: center;
-        margin-bottom: 30px;
-      }
-      .cta-section {
-        background: #28a745;
-        color: white;
-        padding: 50px 0;
-        text-align: center;
-        margin-left: 50px;
+
+      .d-flex {
         margin-right: 50px;
       }
-      .footer {
-        background: #343a40;
-        color: white;
-        padding: 20px 0;
-        text-align: center;
+
+      .navbar-nav {
+        margin-left: auto;
+        margin-right: 100px;
       }
-      .footer a {
-        color: #ffc107;
+
+      body {
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        background-color: #fffbe6;
+      }
+
+      /* Sidebar styles */
+      .sidebar {
+        height: 100vh;
+        background-color: #d5ed9f;
+        transition: width 0.4s ease, opacity 0.4s ease;
+        padding: 20px 10px;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 250px;
+        margin-top: 40px;
+      }
+
+      .sidebar.collapsed {
+        width: 100px;
+        opacity: 1;
+        margin-right: 10px;
+        margin-left: -10px;
+      }
+
+      .sidebar a {
+        font-size: 18px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        color: #00712d;
+        margin-right: 30px;
+        margin-left: -40px;
+      }
+
+      .sidebar a i {
+        margin-right: 15px;
+        font-size: 24px;
+      }
+
+      .sidebar a:hover {
         text-decoration: none;
+        border-radius: 10px;
+        background-color: #ff9100;
       }
-      .footer a:hover {
-        text-decoration: underline;
+
+      /* Sidebar collapsed - only show icons */
+      .sidebar.collapsed a span {
+        display: none;
+        margin-right: 20px;
       }
-     
+
+      .sidebar.collapsed a i {
+        margin-right: 10px;
+        margin-top: 20px;
+      }
+
+      /* Profile section at the top of the sidebar */
+      .profile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        padding: 0 5px;
+      }
+
+      .profile img {
+        width: 30px; /* Increased size */
+        height: 30px; /* Increased size */
+        border-radius: 50%;
+        margin-left: 15px;
+        margin-top: 20px;
+      }
+
+      .profile span {
+        font-weight: bold;
+        margin-top: 20px;
+        margin-right: 80px;
+        color: #00712d;
+      }
+
+      .profile.collapsed img {
+        margin-right: 0;
+        margin-left: 15px;
+      }
+
+      .profile.collapsed span {
+        display: none;
+      }
+
+      /* Main content styles */
+      .main-content {
+        padding: 20px;
+        transition: margin-left 0.4s ease;
+        margin-left: 250px;
+      }
+
+      .main-content.collapsed {
+        margin-left: 80px;
+      }
+
+      /* Sidebar Toggle Button */
+      .toggle-btn {
+        position: absolute;
+        top: 35px;
+        right: 10px;
+        cursor: pointer;
+        padding: 0;
+        background: none;
+        border: none;
+        outline: none;
+        z-index: 1100;
+      }
+
+      /* Adjustments for buttons and other elements */
+      .btn {
+        background-color: #ff9100; /* Green buttons */
+        color: #fffbe6; /* Pale yellow text */
+      }
+
+      .btn :hover {
+        background-color: #ff9100; /* Hover to orange */
+        color: #fffbe6; /* Text stays pale yellow */
+      }
+      /* When collapsed, move the toggle button to the profile image area */
+      .sidebar.collapsed .toggle-btn {
+        top: 80px; /* Where the profile image used to be */
+        right: 41px;
+      }
+
+      .toggle-btn i {
+        font-size: 30px;
+        color: #00712d;
+        transition: color 0.3s ease;
+        margin-left: 40px;
+      }
+
+      .toggle-btn:hover i {
+        color: #ff9100;
+      }
+      .navbar-toggler {
+        margin-right: 10px;
+        border: none;
+        outline: none;
+        background-color: #ff9100;
+        
+      }
+
+      /* Tooltip (hover text) */
+      .sidebar a[data-bs-toggle="tooltip"] {
+        position: relative;
+      }
+
+      /* Media Query for small screen devices */
+      @media (max-width: 991.98px) {
+      }
+
+      /* Arrow Icon Style */
+      .arrow-btn {
+        display: none;
+        font-size: 20px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        margin-bottom: 20px;
+      }
+
+      .sidebar.collapsed .arrow-btn {
+        display: block;
+      }
+      /* Tooltip for toggle button */
+      .toggle-btn[data-bs-toggle="tooltip"]::after {
+        content: attr(data-bs-title);
+        position: absolute;
+        top: -20px;
+        background: #00712d;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        white-space: nowrap;
+        display: none;
+      }
+
+      .toggle-btn:hover::after {
+        display: block;
+      }
+
+      @media (max-width: 991.98px) {
+      }
+      /* Dashboard-specific styling */
+      .dashboard-stats {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        flex: 1;
+        background-color: #fffbe6; /* Light beige background for cards */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+      }
+      .card-header {
+        background-color: #ff9100; /* Bold orange for card header */
+        color: #fffbe6; /* Pale yellow for header text */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .dashboard-overview {
+        margin-top: 40px;
+      }
+
+      .task-list {
+        margin-top: 20px;
+      }
+
+      .task-list ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .task-list li {
+        padding: 10px;
+        background-color: #fffbe6; /* Light beige for task items */
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .task-list li i {
+        margin-right: 10px;
+        color: #00712d; /* Deep green for task icons */
+      }
+
+      .task-list li.completed {
+        background-color: #d5ed9f; /* Soft green for completed tasks */
+      }
+
+      /* Mobile-specific adjustments */
+      @media (max-width: 991.98px) {
+        /* Sidebar collapsed by default on mobile */
+        .sidebar {
+          width: 0;
+          opacity: 0;
+          position: fixed;
+          z-index: 1000;
+          padding: 10px;
+        }
+
+        .sidebar.collapsed {
+          width: 80px;
+          opacity: 1;
+        }
+
+        .main-content {
+          margin-left: 0;
+        }
+
+        .main-content.collapsed {
+          margin-left: 80px;
+        }
+        .sidebar a {
+          margin-right: 0px;
+          margin-left: 0px;
+        }
+        .profile.collapsed img {
+          margin-right: 0;
+          margin-left: 20px;
+        }
+        .sidebar {
+          width: 250px;
+          opacity: 1;
+        }
+        .sidebar.collapsed .toggle-btn {
+          top: 75px; /* Where the profile image used to be */
+          right: px;
+          left: 0;
+          margin-bottom: 100px;
+        }
+        .main-content {
+          margin-left: 80px;
+        }
+
+        .toggle-btn {
+          top: 20px;
+          left: 130px;
+        }
+        .main-content {
+          padding: 20px;
+          transition: margin-left 0.4s ease;
+          margin-left: 250px;
+        }
+
+        /* Make toggle button more prominent */
+
+        /* Dashboard cards stack vertically */
+        .dashboard-stats {
+          flex-direction: column;
+        }
+
+        
+      }
+
+      @media (max-width: 576px) {
+        .dashboard-stats {
+          flex-direction: column;
+        }
+
+        /* Task list looks nice on smaller screens */
+        .task-list ul {
+          padding-left: 0;
+        }
+
+        .task-list li {
+          font-size: 14px;
+        }
+      }
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        /* Collapse sidebar by default on smaller screens */
+        .sidebar {
+          width: 90px;
+          margin-right: 10px;
+        }
+
+        .sidebar a span {
+          display: none; /* Hide the text beside icons */
+        }
+
+        .main-content {
+          margin-left: 70px;
+          width: calc(100% - 70px);
+        }
+
+        /* Hide profile image on mobile */
+        
+        .profile span {
+          display: none;
+        }
+
+        /* Make toggle button more prominent on mobile */
+        .toggle-btn {
+          font-size: 24px;
+          top: 70px;
+          left: -10px;
+        }
+      }
+      .card {
+        flex: 1;
+        background-color: #fffbe6; /* Light beige background for cards */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #00712d; /* Deep green for card titles */
+      }
+      /* Fancy Graph Chart Container */
+      .chart {
+        background-color: #fffbe6; /* Pale yellow background for charts */
+        border: 1px solid #00712d; /* Green border */
+        border-radius: 10px;
+        padding: 20px;
+        width: 100%;
+        height: 400px;
+        margin-top: 20px;
+      }
+      /* Add a background gradient if desired */
+      .card {
+        background: linear-gradient(135deg, #d5ed9f 0%, #fffbe6 100%);
+      }
+      /* Ensure canvas is responsive */
+      canvas {
+        width: 200px !important; /* Reduced canvas size */
+        height: 200px !important; /* Reduced canvas size */
+      }
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="#" style="color: #0d6efd">JobHub</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #009e49">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #009e49">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #009e49"
-                >FAQ</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #009e49">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="btn btn-lg"
-                href="get-started.html"
-                >Get Started</a>
-            </li>
-          </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <a class="navbar-brand" href="index.html">JobHub</a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" aria-current="page">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <h1>Welcome to JobHub</h1>
-        <p class="animated-text">
-          Your all-in-one platform to connect sellers and buyers seamlessly.
-        </p>
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebarMenu">
+      <!-- Sidebar Toggle Button -->
+      <button class="toggle-btn" id="sidebarToggle">
+        <i class="bi bi-menu-button"></i>
+        <!-- Arrow Icon -->
+      </button>
+
+      <!-- Profile Section -->
+      <div class="profile">
+        <img src="avatar.jfif" alt="User Image" />
+        <span>John Doe</span>
       </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2 class="mb-3" style="color: #00712d">Our Features</h2>
-          <p style="color: #343a40;">Discover what makes JobHub the best place for your needs.</p>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card text-center p-4">
-              <div class="card-body">
-                <i class="bi bi-briefcase-fill features-icon"></i>
-                <h5 class="card-title mt-3" style="color: #00712d">
-                  Post Jobs
-                </h5>
-                <p class="card-text" style="color: #343a40;">
-                  Buyers can post what they need, and sellers can offer their
-                  services.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card text-center p-4">
-              <div class="card-body">
-                <i class="bi bi-people-fill features-icon"></i>
-                <h5 class="card-title mt-3" style="color: #00712d">
-                  Connect Easily
-                </h5>
-                <p class="card-text" style="color: #343a40;">
-                  Effortlessly connect with professionals or clients that match
-                  your criteria.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card text-center p-4">
-              <div class="card-body">
-                <i class="bi bi-shield-lock-fill features-icon"></i>
-                <h5 class="card-title mt-3" style="color: #00712d">
-                  Secure Payments
-                </h5>
-                <p class="card-text" style="color: #343a40;">
-                  We ensure secure transactions between parties with our
-                  reliable payment gateway.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="how-it-works">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2 class="mb-3" style="color: #00712d">How It Works</h2>
-          <p style="color: #343a40;">Simple steps to get started with JobHub.</p>
-        </div>
-        <div class="row text-center">
-          <div class="col-md-4">
-            <h4 style="color: #00712d">1. Create an Account</h4>
-            <p style="color: #343a40;">Sign up and create your profile in just a few steps.</p>
-          </div>
-          <div class="col-md-4">
-            <h4 style="color: #00712d">2. Post or Browse Jobs</h4>
-            <p style="color: #343a40;">
-              Post what you need or find the perfect job that fits your skills.
-            </p>
-          </div>
-          <div class="col-md-4">
-            <h4 style="color: #00712d">3. Connect & Get to Work</h4>
-            <p style="color: #343a40;">Connect with the right people and start your journey.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Popular Profiles Section -->
-    <section class="popular-profiles">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2 class="mb-3" style="color: #00712d">Popular Profiles</h2>
-          <p style="color: #343a40;">Meet some of the top service providers on JobHub.</p>
-        </div>
-        <div class="row">
-          <!-- Add profile cards as needed -->
-          <div class="col-md-3">
-            <div class="card text-center">
-              <img
-                src="profile.jpg"
-                class="card-img-top"
-                alt="Profile Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Jane Doe</h5>
-                <p class="card-text">Proof Reader</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card text-center">
-              <img
-                src="profilee.jpg"
-                class="card-img-top"
-                alt="Profile Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">John Smith</h5>
-                <p class="card-text">UI/UX Designer</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card text-center">
-              <img
-                src="profile 3.jpg"
-                class="card-img-top"
-                alt="Profile Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Jane Doe</h5>
-                <p class="card-text">Graphic Designer</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card text-center">
-              <img
-                src="prof.jpg"
-                class="card-img-top"
-                alt="Profile Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">John Smith</h5>
-                <p class="card-text">Web Developer</p>
-              </div>
-            </div>
-          </div>
-         
-          </div>
-          <!-- Additional profiles -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-
-    <section class="cta-section">
-        <div class="container">
-          <h2>Ready to Get Started?</h2>
-          <p>Sign up now and explore endless opportunities on JobHub.</p>
+      <!-- Sidebar Navigation -->
+      <ul class="nav flex-column">
+        <li class="nav-item">
           <a
-            href="get-started.html"
-            class="btn btn-lg"
-            >Get Started</a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Dashboard"
           >
-        </div>
-      </section>
-    
-    
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Orders"
+          >
+            <i class="bi bi-bag-check"></i>
+            <span>Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Products"
+          >
+            <i class="bi bi-box-seam"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Customers"
+          >
+            <i class="bi bi-people"></i>
+            <span>Customers</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Reports"
+          >
+            <i class="bi bi-file-bar-graph"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Integrations"
+          >
+            <i class="bi bi-plug"></i>
+            <span>Integrations</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-    <!-- Testimonials Section -->
-    <section class="testimonial-section">
-        <div class="container">
-          <div class="text-center mb-5">
-            <h2 class="mb-3" style="color: #00712d">Testimonials</h2>
-            <p style="color: #343a40;">See what our users have to say about JobHub.</p>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="testimonial">
-                <blockquote class="blockquote">
-                  <p>
-                    "JobHub has transformed the way I find freelance work. The
-                    process is smooth and secure!"
-                  </p>
-                  <footer class="blockquote-footer">Alex Johnson</footer>
-                </blockquote>
-              </div>
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+      <div class="container-fluid">
+        <!-- Dashboard Stats Section -->
+        <div class="dashboard-stats">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Total Jobs Posted</h5>
+              <p class="card-text">1,230</p>
             </div>
-            <div class="col-md-6">
-              <div class="testimonial">
-                <blockquote class="blockquote">
-                  <p>
-                    "As a business owner, JobHub makes it easy to find qualified
-                    professionals quickly."
-                  </p>
-                  <footer class="blockquote-footer">Maria Gonzalez</footer>
-                </blockquote>
-              </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Completed Orders</h5>
+              <p class="card-text">890</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">New Freelancers</h5>
+              <p class="card-text">320</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Pending Payments</h5>
+              <p class="card-text">$12,500</p>
             </div>
           </div>
         </div>
-      </section>
-  
 
-    <!-- Advertisement / Promotional Offers Section -->
-    <section class="advert-section">
-      <div class="container">
-        <h2>Special Offer</h2>
-        <p>Get 20% off on your first job post! Use code: JOBHUB20</p>
-        <a href="#" class="btn btn-lg" st>Learn More</a>
+        <!-- Chart Section -->
+        <div class="chart">
+          <h5>Job Trends</h5>
+          <p>Graph showing trends of job postings and orders.</p>
+          <!-- Add a canvas for the chart -->
+          <canvas id="jobTrendsChart"></canvas>
+        </div>
+        <!-- Fancy Progress Graph -->
+        <div class="card" style="max-width: 600px; margin: 20px auto">
+          <div class="card-body">
+            <h5 class="card-title">Project Completion Status</h5>
+            <canvas id="progressGraph"></canvas>
+          </div>
+        </div>
+
+        <!-- Task Overview Section -->
+        <div class="dashboard-overview">
+          <h4>Task Overview</h4>
+          <div class="task-list">
+            <ul>
+              <li><i class="bi bi-check-circle"></i> Update profile details</li>
+              <li class="completed">
+                <i class="bi bi-check-circle-fill"></i> Complete job posting
+              </li>
+              <li>
+                <i class="bi bi-exclamation-circle"></i> Resolve payment issues
+              </li>
+              <li>
+                <i class="bi bi-hourglass-split"></i> Review freelancer
+                applications
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </section>
+    </main>
 
-    <!-- Sponsors Section -->
-    <section class="sponsor-section">
-        <div class="container">
-          <h2 style="color: #ff9100">Our Sponsors</h2>
-          <p>We are proud to be supported by these amazing companies.</p>
-          <div class="row">
-            <div class="col-md-3">
-              <img src="spomm-removebg-preview.png" alt="Sponsor 1" class="img-fluid" />
-            </div>
-            <div class="col-md-3">
-              <img src="spon-removebg-preview.png" alt="Sponsor 2" class="img-fluid" />
-            </div>
-            
-                <div class="col-md-3">
-                  <img src="sponss-removebg-preview.png" alt="Sponsor 1" class="img-fluid" />
-                </div>
-          
-                    <div class="col-md-3">
-                      <img src="sponsss-removebg-preview.png" alt="Sponsor 1" class="img-fluid" />
-                    </div>
-            <!-- Additional sponsors -->
-          </div>
-        </div>
-      </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 JobHub. All rights reserved.</p>
-        <p>
-          Follow us on: <a href="#">Facebook</a> | <a href="#">Twitter</a> |
-          <a href="#">LinkedIn</a>
-        </p>
-      </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script to handle sidebar toggle and tooltips -->
     <script>
-      // JavaScript to cycle through texts in the hero section
-      const texts = [
-        "Your all-in-one platform to connect sellers and buyers seamlessly.",
-        "Find the best freelancers for your projects.",
-        "Grow your business with talented professionals.",
-      ];
-      let currentIndex = 0;
+      const sidebarToggleBtn = document.getElementById("sidebarToggle");
+      const sidebar = document.getElementById("sidebarMenu");
+      const mainContent = document.getElementById("mainContent");
+      const profile = document.querySelector(".profile");
 
-      function cycleTexts() {
-        const textElement = document.querySelector(".animated-text");
-        textElement.textContent = texts[currentIndex];
-        currentIndex = (currentIndex + 1) % texts.length;
-      }
+      sidebarToggleBtn.addEventListener("click", function () {
+        sidebar.classList.toggle("collapsed");
+        mainContent.classList.toggle("collapsed");
+        profile.classList.toggle("collapsed");
 
-      setInterval(cycleTexts, 8000); // Change text every 8 seconds
+        // Update the tooltip text
+        const isCollapsed = sidebar.classList.contains("collapsed");
+        sidebarToggleBtn.setAttribute(
+          "data-bs-title",
+          isCollapsed ? "Expand" : "Minimize"
+        );
+      });
+
+      // Initialize tooltips
+      const tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+
+      const ctx = document.getElementById("progressGraph").getContext("2d");
+
+      const data = {
+        labels: ["Completed", "Pending"],
+        datasets: [
+          {
+            label: "Project Progress",
+            data: [70, 30], // 70% completed, 30% pending
+            backgroundColor: ["#ff9100", "#d5ed9f"], // Green for completed, light green for pending
+          hoverBackgroundColor: ["#00712d", "#d5ed9f"], // Optional: Adjust hover colors if desired
+
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const options = {
+        cutout: "70%", // Makes it a doughnut chart
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: "bottom",
+          },
+          tooltip: {
+            enabled: true,
+          },
+        },
+      };
+
+      const progressGraph = new Chart(ctx, {
+        type: "doughnut", // Type of chart (doughnut for progress)
+        data: data,
+        options: options,
+      });
+
+      
     </script>
+    <!-- Script to handle chart rendering -->
+
+  </script>
   </body>
 </html>

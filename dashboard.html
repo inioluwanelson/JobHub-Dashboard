@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      .navbar {
+        background-color: #00712d; /* Rich green for navbar */
+        color: #fffbe6; /* Pale yellow for text */
+      }
+      .navbar-toggler {
+        margin-right: 10px;
+        border: none;
+        outline: none;
+      }
+
+      .navbar-toggler:focus,
+      .navbar-toggler:active {
+        box-shadow: none;
+        border: none;
+        outline: none;
+      }
+      .nav-link {
+        color: #fffbe6;
+      }
+      .navbar-brand {
+        margin-left: 50px;
+        margin-right: 300px;
+        color: #fffbe6;
+      }
+      .navbar-brand:hover{
+        color: #ff9100;
+      }
+      .dropdown-menu {
+        background-color: #fffbe6; /* Light yellow background */
+      }
+
+      .nav-item {
+        padding-left: 50px;
+        padding-right: 20px;
+      }
+      .navbar .nav-item a {
+        color: #fffbe6; /* Navbar links in pale yellow */
+      }
+      .navbar .nav-item .dropdown-menu a {
+        color: #ff9100; /* Navbar links in pale yellow */
+      }
+      /* Hover and focus state */
+      .dropdown-menu .dropdown-item:hover,
+      .dropdown-menu .dropdown-item:focus {
+        background-color: #d5ed9f; /* Orange background on hover/focus */
+      }
+      .navbar .nav-item a:hover {
+        color: #ff9100; /* Hover effect with bold orange */
+      }
+      
+      @media (max-width: 900px) {
+        .navbar-brand {
+          margin-left: 20px;
+          margin-right: auto;
+        }
+        .nav-item {
+          padding-left: 20px;
+        }
+      }
+
+      .d-flex {
+        margin-right: 50px;
+      }
+
+      .navbar-nav {
+        margin-left: auto;
+        margin-right: 100px;
+      }
+
+      body {
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        background-color: #fffbe6;
+      }
+
+      /* Sidebar styles */
+      .sidebar {
+        height: 100vh;
+        background-color: #d5ed9f;
+        transition: width 0.4s ease, opacity 0.4s ease;
+        padding: 20px 10px;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 250px;
+        margin-top: 40px;
+      }
+
+      .sidebar.collapsed {
+        width: 100px;
+        opacity: 1;
+        margin-right: 10px;
+        margin-left: -10px;
+      }
+
+      .sidebar a {
+        font-size: 18px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        color: #00712d;
+        margin-right: 30px;
+        margin-left: -40px;
+      }
+
+      .sidebar a i {
+        margin-right: 15px;
+        font-size: 24px;
+      }
+
+      .sidebar a:hover {
+        text-decoration: none;
+        border-radius: 10px;
+        background-color: #ff9100;
+      }
+
+      /* Sidebar collapsed - only show icons */
+      .sidebar.collapsed a span {
+        display: none;
+        margin-right: 20px;
+      }
+
+      .sidebar.collapsed a i {
+        margin-right: 10px;
+        margin-top: 20px;
+      }
+
+      /* Profile section at the top of the sidebar */
+      .profile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        padding: 0 5px;
+      }
+
+      .profile img {
+        width: 30px; /* Increased size */
+        height: 30px; /* Increased size */
+        border-radius: 50%;
+        margin-left: 15px;
+        margin-top: 20px;
+      }
+
+      .profile span {
+        font-weight: bold;
+        margin-top: 20px;
+        margin-right: 80px;
+        color: #00712d;
+      }
+
+      .profile.collapsed img {
+        margin-right: 0;
+        margin-left: 15px;
+      }
+
+      .profile.collapsed span {
+        display: none;
+      }
+
+      /* Main content styles */
+      .main-content {
+        padding: 20px;
+        transition: margin-left 0.4s ease;
+        margin-left: 250px;
+      }
+
+      .main-content.collapsed {
+        margin-left: 80px;
+      }
+
+      /* Sidebar Toggle Button */
+      .toggle-btn {
+        position: absolute;
+        top: 35px;
+        right: 10px;
+        cursor: pointer;
+        padding: 0;
+        background: none;
+        border: none;
+        outline: none;
+        z-index: 1100;
+      }
+
+      /* Adjustments for buttons and other elements */
+      .btn {
+        background-color: #ff9100; /* Green buttons */
+        color: #fffbe6; /* Pale yellow text */
+      }
+
+      .btn :hover {
+        background-color: #ff9100; /* Hover to orange */
+        color: #fffbe6; /* Text stays pale yellow */
+      }
+      /* When collapsed, move the toggle button to the profile image area */
+      .sidebar.collapsed .toggle-btn {
+        top: 80px; /* Where the profile image used to be */
+        right: 41px;
+      }
+
+      .toggle-btn i {
+        font-size: 30px;
+        color: #00712d;
+        transition: color 0.3s ease;
+        margin-left: 40px;
+      }
+
+      .toggle-btn:hover i {
+        color: #ff9100;
+      }
+      .navbar-toggler {
+        margin-right: 10px;
+        border: none;
+        outline: none;
+        background-color: #ff9100;
+        
+      }
+
+      /* Tooltip (hover text) */
+      .sidebar a[data-bs-toggle="tooltip"] {
+        position: relative;
+      }
+
+      /* Media Query for small screen devices */
+      @media (max-width: 991.98px) {
+      }
+
+      /* Arrow Icon Style */
+      .arrow-btn {
+        display: none;
+        font-size: 20px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        margin-bottom: 20px;
+      }
+
+      .sidebar.collapsed .arrow-btn {
+        display: block;
+      }
+      /* Tooltip for toggle button */
+      .toggle-btn[data-bs-toggle="tooltip"]::after {
+        content: attr(data-bs-title);
+        position: absolute;
+        top: -20px;
+        background: #00712d;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        white-space: nowrap;
+        display: none;
+      }
+
+      .toggle-btn:hover::after {
+        display: block;
+      }
+
+      @media (max-width: 991.98px) {
+      }
+      /* Dashboard-specific styling */
+      .dashboard-stats {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        flex: 1;
+        background-color: #fffbe6; /* Light beige background for cards */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+      }
+      .card-header {
+        background-color: #ff9100; /* Bold orange for card header */
+        color: #fffbe6; /* Pale yellow for header text */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .dashboard-overview {
+        margin-top: 40px;
+      }
+
+      .task-list {
+        margin-top: 20px;
+      }
+
+      .task-list ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .task-list li {
+        padding: 10px;
+        background-color: #fffbe6; /* Light beige for task items */
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .task-list li i {
+        margin-right: 10px;
+        color: #00712d; /* Deep green for task icons */
+      }
+
+      .task-list li.completed {
+        background-color: #d5ed9f; /* Soft green for completed tasks */
+      }
+
+      /* Mobile-specific adjustments */
+      @media (max-width: 991.98px) {
+        /* Sidebar collapsed by default on mobile */
+        .sidebar {
+          width: 0;
+          opacity: 0;
+          position: fixed;
+          z-index: 1000;
+          padding: 10px;
+        }
+
+        .sidebar.collapsed {
+          width: 80px;
+          opacity: 1;
+        }
+
+        .main-content {
+          margin-left: 0;
+        }
+
+        .main-content.collapsed {
+          margin-left: 80px;
+        }
+        .sidebar a {
+          margin-right: 0px;
+          margin-left: 0px;
+        }
+        .profile.collapsed img {
+          margin-right: 0;
+          margin-left: 20px;
+        }
+        .sidebar {
+          width: 250px;
+          opacity: 1;
+        }
+        .sidebar.collapsed .toggle-btn {
+          top: 75px; /* Where the profile image used to be */
+          right: px;
+          left: 0;
+          margin-bottom: 100px;
+        }
+        .main-content {
+          margin-left: 80px;
+        }
+
+        .toggle-btn {
+          top: 20px;
+          left: 130px;
+        }
+        .main-content {
+          padding: 20px;
+          transition: margin-left 0.4s ease;
+          margin-left: 250px;
+        }
+
+        /* Make toggle button more prominent */
+
+        /* Dashboard cards stack vertically */
+        .dashboard-stats {
+          flex-direction: column;
+        }
+
+        
+      }
+
+      @media (max-width: 576px) {
+        .dashboard-stats {
+          flex-direction: column;
+        }
+
+        /* Task list looks nice on smaller screens */
+        .task-list ul {
+          padding-left: 0;
+        }
+
+        .task-list li {
+          font-size: 14px;
+        }
+      }
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        /* Collapse sidebar by default on smaller screens */
+        .sidebar {
+          width: 90px;
+          margin-right: 10px;
+        }
+
+        .sidebar a span {
+          display: none; /* Hide the text beside icons */
+        }
+
+        .main-content {
+          margin-left: 70px;
+          width: calc(100% - 70px);
+        }
+
+        /* Hide profile image on mobile */
+        
+        .profile span {
+          display: none;
+        }
+
+        /* Make toggle button more prominent on mobile */
+        .toggle-btn {
+          font-size: 24px;
+          top: 70px;
+          left: -10px;
+        }
+      }
+      .card {
+        flex: 1;
+        background-color: #fffbe6; /* Light beige background for cards */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #00712d; /* Deep green for card titles */
+      }
+      /* Fancy Graph Chart Container */
+      .chart {
+        background-color: #fffbe6; /* Pale yellow background for charts */
+        border: 1px solid #00712d; /* Green border */
+        border-radius: 10px;
+        padding: 20px;
+        width: 100%;
+        height: 400px;
+        margin-top: 20px;
+      }
+      /* Add a background gradient if desired */
+      .card {
+        background: linear-gradient(135deg, #d5ed9f 0%, #fffbe6 100%);
+      }
+      /* Ensure canvas is responsive */
+      canvas {
+        width: 200px !important; /* Reduced canvas size */
+        height: 200px !important; /* Reduced canvas size */
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <a class="navbar-brand" href="index.html">JobHub</a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" aria-current="page">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebarMenu">
+      <!-- Sidebar Toggle Button -->
+      <button class="toggle-btn" id="sidebarToggle">
+        <i class="bi bi-menu-button"></i>
+        <!-- Arrow Icon -->
+      </button>
+
+      <!-- Profile Section -->
+      <div class="profile">
+        <img src="avatar.jfif" alt="User Image" />
+        <span>John Doe</span>
+      </div>
+
+      <!-- Sidebar Navigation -->
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Dashboard"
+          >
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Orders"
+          >
+            <i class="bi bi-bag-check"></i>
+            <span>Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Products"
+          >
+            <i class="bi bi-box-seam"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Customers"
+          >
+            <i class="bi bi-people"></i>
+            <span>Customers</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Reports"
+          >
+            <i class="bi bi-file-bar-graph"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Integrations"
+          >
+            <i class="bi bi-plug"></i>
+            <span>Integrations</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+      <div class="container-fluid">
+        <!-- Dashboard Stats Section -->
+        <div class="dashboard-stats">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Total Jobs Posted</h5>
+              <p class="card-text">1,230</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Completed Orders</h5>
+              <p class="card-text">890</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">New Freelancers</h5>
+              <p class="card-text">320</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Pending Payments</h5>
+              <p class="card-text">$12,500</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart">
+          <h5>Job Trends</h5>
+          <p>Graph showing trends of job postings and orders.</p>
+          <!-- Add a canvas for the chart -->
+          <canvas id="jobTrendsChart"></canvas>
+        </div>
+        <!-- Fancy Progress Graph -->
+        <div class="card" style="max-width: 600px; margin: 20px auto">
+          <div class="card-body">
+            <h5 class="card-title">Project Completion Status</h5>
+            <canvas id="progressGraph"></canvas>
+          </div>
+        </div>
+
+        <!-- Task Overview Section -->
+        <div class="dashboard-overview">
+          <h4>Task Overview</h4>
+          <div class="task-list">
+            <ul>
+              <li><i class="bi bi-check-circle"></i> Update profile details</li>
+              <li class="completed">
+                <i class="bi bi-check-circle-fill"></i> Complete job posting
+              </li>
+              <li>
+                <i class="bi bi-exclamation-circle"></i> Resolve payment issues
+              </li>
+              <li>
+                <i class="bi bi-hourglass-split"></i> Review freelancer
+                applications
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Script to handle sidebar toggle and tooltips -->
+    <script>
+      const sidebarToggleBtn = document.getElementById("sidebarToggle");
+      const sidebar = document.getElementById("sidebarMenu");
+      const mainContent = document.getElementById("mainContent");
+      const profile = document.querySelector(".profile");
+
+      sidebarToggleBtn.addEventListener("click", function () {
+        sidebar.classList.toggle("collapsed");
+        mainContent.classList.toggle("collapsed");
+        profile.classList.toggle("collapsed");
+
+        // Update the tooltip text
+        const isCollapsed = sidebar.classList.contains("collapsed");
+        sidebarToggleBtn.setAttribute(
+          "data-bs-title",
+          isCollapsed ? "Expand" : "Minimize"
+        );
+      });
+
+      // Initialize tooltips
+      const tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+
+      const ctx = document.getElementById("progressGraph").getContext("2d");
+
+      const data = {
+        labels: ["Completed", "Pending"],
+        datasets: [
+          {
+            label: "Project Progress",
+            data: [70, 30], // 70% completed, 30% pending
+            backgroundColor: ["#ff9100", "#d5ed9f"], // Green for completed, light green for pending
+          hoverBackgroundColor: ["#00712d", "#d5ed9f"], // Optional: Adjust hover colors if desired
+
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const options = {
+        cutout: "70%", // Makes it a doughnut chart
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: "bottom",
+          },
+          tooltip: {
+            enabled: true,
+          },
+        },
+      };
+
+      const progressGraph = new Chart(ctx, {
+        type: "doughnut", // Type of chart (doughnut for progress)
+        data: data,
+        options: options,
+      });
+
+      
+    </script>
+    <!-- Script to handle chart rendering -->
+
+  </script>
+  </body>
+</html>
